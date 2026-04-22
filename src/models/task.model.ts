@@ -1,5 +1,5 @@
 import {
-  Model, DataTypes, Optional, Sequelize,
+  Model, DataTypes, Optional, Sequelize, Op,
 } from 'sequelize';
 
 export enum TaskStatus {
@@ -64,9 +64,9 @@ export class Task extends Model<TaskAttributes, TaskCreationAttributes>
         sequelize,
         tableName: 'tasks',
         paranoid: true,
-        defaultScope: { where: { deletedAt: null } },
+        defaultScope: { where: { deletedAt: { [Op.is]: null as any } } },
         scopes: {
-          active: { where: { deletedAt: null, status: [TaskStatus.PENDING, TaskStatus.IN_PROGRESS] } },
+          active: { where: { deletedAt: { [Op.is]: null as any }, status: [TaskStatus.PENDING, TaskStatus.IN_PROGRESS] } },
         },
       }
     );

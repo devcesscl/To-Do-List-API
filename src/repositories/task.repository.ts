@@ -1,4 +1,4 @@
-import { Task, TaskStatus } from '../models/task.model';
+import { Task, TaskStatus, TaskPriority } from '../models/task.model';
 import { Category } from '../models/category.model';
 
 export interface CreateTaskDto {
@@ -13,7 +13,7 @@ export interface UpdateTaskDto {
   title?: string;
   description?: string;
   status?: TaskStatus;
-  priority?: string;
+  priority?: TaskPriority;
   dueDate?: Date;
 }
 
